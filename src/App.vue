@@ -63,12 +63,26 @@ export default {
     }
 };
 </script>  
-<style scoped>
+<style scoped lang="scss">
+#app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
 .weather-cards{
     display: flex;
     flex-wrap:wrap;
     gap: 1rem;
     justify-content: center;
     margin-top: 1rem;
+}
+h2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: rgb(4, 32, 67);
+    text-align: center;
 }
 </style>

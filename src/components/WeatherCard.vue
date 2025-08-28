@@ -36,7 +36,7 @@ export default {
   width: 160px;
   text-align: center;
   transition: transform 0.2s ease;
-  margin-top: 150px;
+ 
 
   &:hover {
     transform: scale(1.03);
