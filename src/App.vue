@@ -1,13 +1,14 @@
 <template>
     <div id="app">
         <SearchBar @search ="handleSearch"/>
+        <h2> {{ city }}</h2>
         <div class="weather-cards">
             <WeatherCard
             v-for="day in forecast"
             :key ="day.date"
             :date="day.date"
-            :conditionText="day.condition.text"
-            :temp="day.temp_c"
+            :conditionText=" day.day ? day.day.condition.text : ''"
+            :temp="day.day ? day.day.avgtemp_c :''"
             />
         </div>
     </div>
@@ -30,7 +31,7 @@ export default {
     methods:{
         async fetchWeather(city){
             try{
-                const response = await axios.get('https://api.weatherapi.com/v1/forecast.json',{
+                const response = await axios.get('http://api.weatherapi.com/v1/forecast.json',{
                     params: {
                         key:this.apiKey,
                         q: city,
@@ -44,7 +45,7 @@ export default {
                 });
             
                 this.forecast = response.data.forecast.forecastday;
-
+                this.city = response.data.location.name;
             }
             catch (error){
                 console.error('Hava durumu verisi alınamadı:',error);
@@ -52,8 +53,8 @@ export default {
             }
         },
         handleSearch(newCity) {
-            this.city =newCity;
-            this.fetchWeather(this.city);
+           
+            this.fetchWeather(newCity);
         }
     },
     mounted(){

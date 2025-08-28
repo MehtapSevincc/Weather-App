@@ -1,13 +1,31 @@
 <template>
-  <div style="border: 1px solid black; padding: 1rem;">
-    <p>{{ date }}</p>
-    <p>{{ conditionText }}</p>
-    <p>{{ temp }}°C</p>
-  </div>
+    <div class="weather-card">
+        <h3>{{ formattedDate }}</h3>
+        <p>{{ conditionText }}</p>
+        <p>{{ temp }} °C</p>
+    </div>
 </template>
-
 <script>
 export default {
-  props: ['date', 'conditionText', 'temp']
-}
+    name: 'WeatherCard',
+    props: {
+        date: {
+            type: String,
+            required: true,
+        },
+        conditionText:{
+            type: String,
+            required: true,
+        },
+        temp :{
+            type: Number,
+            required: true,
+        },
+    },
+    computed:{
+        formattedDate(){
+            return this.date;
+        },
+    },
+};
 </script>
