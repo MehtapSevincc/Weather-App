@@ -1,6 +1,7 @@
 <template>
     <div class="weather-card">
         <h3>{{ formattedDate }}</h3>
+       <img :src="iconUrl" alt="weather icon" />
         <p>{{ conditionText }}</p>
         <p>{{ temp }} °C</p>
     </div>
@@ -9,23 +10,19 @@
 export default {
     name: 'WeatherCard',
     props: {
-        date: {
-            type: String,
-            required: true,
-        },
-        conditionText:{
-            type: String,
-            required: true,
-        },
-        temp :{
-            type: Number,
-            required: true,
-        },
+        date: String,
+         conditionText: String,  
+         temp :  Number,
+        conditionIcon: String
     },
     computed:{
         formattedDate(){
             return this.date;
         },
-    },
+        iconUrl(){
+            if(!this.conditionIcon) return '';
+            return this.conditionIcon.startsWith('http') ? this.conditionIcon :`https:${this.conditionIcon}`;
+        }
+    }
 };
 </script>

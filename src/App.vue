@@ -9,6 +9,7 @@
             :date="day.date"
             :conditionText=" day.day ? day.day.condition.text : ''"
             :temp="day.day ? day.day.avgtemp_c :''"
+            :conditionIcon=" day.day? day.day.condition.icon :''"
             />
         </div>
     </div>
