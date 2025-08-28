@@ -1,4 +1,3 @@
-
 <template>
     <div id="app">
         <SearchBar @search ="handleSearch"/>
@@ -25,13 +24,13 @@ export default {
         return {
             city:'Istanbul',
             forecast:[],
-            apiKey:' 350e231fb54d4a74ac1172741252708'
+            apiKey:'350e231fb54d4a74ac1172741252708'
         };
     },
     methods:{
         async fetchWeather(city){
             try{
-                const response = await axios.get('http://api.weatherapi.com/v1/forecast.json?key=350e231fb54d4a74ac1172741252708&q=Istanbul&days=4&aqi=no&alerts=no',{
+                const response = await axios.get('https://api.weatherapi.com/v1/forecast.json',{
                     params: {
                         key:this.apiKey,
                         q: city,
