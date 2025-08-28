@@ -1,6 +1,14 @@
 <template>
     <div id="app">
         <SearchBar @search ="handleSearch"/>
+
+        <div v-if="hasError" class="error-message">
+            <p>Data not found. Please enter a valid city name.</p>
+        </div>
+
+
+ <div v-else>
+
         <h2> {{ city }}</h2>
         <div class="weather-cards">
             <WeatherCard
@@ -12,6 +20,7 @@
             :conditionIcon=" day.day? day.day.condition.icon :''"
             />
         </div>
+</div>
     </div>
 </template>
 
@@ -26,7 +35,8 @@ export default {
         return {
             city:'Istanbul',
             forecast:[],
-            apiKey:'350e231fb54d4a74ac1172741252708'
+            apiKey:'350e231fb54d4a74ac1172741252708',
+            hasError:false
         };
     },
     methods:{
@@ -47,10 +57,13 @@ export default {
             
                 this.forecast = response.data.forecast.forecastday;
                 this.city = response.data.location.name;
+                this.hasError=false;
             }
             catch (error){
                 console.error('Hava durumu verisi alınamadı:',error);
                 this.forecast =[];
+                this.city ='';
+                this.hasError = true;
             }
         },
         handleSearch(newCity) {
