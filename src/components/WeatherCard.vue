@@ -17,7 +17,14 @@ export default {
     },
     computed:{
         formattedDate(){
-            return this.date;
+            if(!this.date) return '';
+            const dateObj =new Date(this.date);
+            if(isNaN(dateObj)) return this.date;
+            const day= dateObj.getDate().toString().padStart(2,'0');
+            const month =dateObj.toLocaleString('en-US',{month: 'short'});
+            const year =dateObj.getFullYear();
+
+            return `${day} ${month} ${year}`;
         },
         iconUrl(){
             if(!this.conditionIcon) return '';
@@ -44,6 +51,7 @@ export default {
   }
 
   h3 {
+    color: rgb(4, 32, 67);
     margin-bottom: 0.5rem;
     font-size: 1rem;
   }
