@@ -35,7 +35,7 @@ export default {
         return {
             city:'Istanbul',
             forecast:[],
-            apiKey:'350e231fb54d4a74ac1172741252708',
+            apiKey: import.meta.env.VITE_API_KEY,
             hasError:false
         };
     },
