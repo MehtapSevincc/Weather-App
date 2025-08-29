@@ -1,36 +1,38 @@
 <template>
-    <div class="weather-card">
-        <h3>{{ formattedDate }}</h3>
-       <img :src="iconUrl" alt="weather icon" />
-        <p>{{ conditionText }}</p>
-        <p>{{ temp }} °C</p>
-    </div>
+  <div class="weather-card">
+    <h3>{{ formattedDate }}</h3>
+    <img :src="iconUrl" alt="weather icon" />
+    <p>{{ conditionText }}</p>
+    <p>{{ temp }} °C</p>
+  </div>
 </template>
 <script>
 export default {
-    name: 'WeatherCard',
-    props: {
-        date: String,
-         conditionText: String,  
-         temp :  Number,
-        conditionIcon: String
-    },
-    computed:{
-        formattedDate(){
-            if(!this.date) return '';
-            const dateObj =new Date(this.date);
-            if(isNaN(dateObj)) return this.date;
-            const day= dateObj.getDate().toString().padStart(2,'0');
-            const month =dateObj.toLocaleString('en-US',{month: 'short'});
-            const year =dateObj.getFullYear();
+  name: "WeatherCard",
+  props: {
+    date: String,
+    conditionText: String,
+    temp: Number,
+    conditionIcon: String,
+  },
+  computed: {
+    formattedDate() {
+      if (!this.date) return "";
+      const dateObj = new Date(this.date);
+      if (isNaN(dateObj)) return this.date;
+      const day = dateObj.getDate().toString().padStart(2, "0");
+      const month = dateObj.toLocaleString("en-US", { month: "short" });
+      const year = dateObj.getFullYear();
 
-            return `${day} ${month} ${year}`;
-        },
-        iconUrl(){
-            if(!this.conditionIcon) return '';
-            return this.conditionIcon.startsWith('http') ? this.conditionIcon :`https:${this.conditionIcon}`;
-        }
-    }
+      return `${day} ${month} ${year}`;
+    },
+    iconUrl() {
+      if (!this.conditionIcon) return "";
+      return this.conditionIcon.startsWith("http")
+        ? this.conditionIcon
+        : `https:${this.conditionIcon}`;
+    },
+  },
 };
 </script>
 
@@ -43,7 +45,6 @@ export default {
   width: 160px;
   text-align: center;
   transition: transform 0.2s ease;
- 
 
   &:hover {
     transform: scale(1.03);
@@ -62,4 +63,3 @@ export default {
   }
 }
 </style>
-
