@@ -1,9 +1,9 @@
 <template>
   <div class="weather-card">
-    <h3>{{ formattedDate }}</h3>
-    <img :src="iconUrl" alt="weather icon" />
-    <p>{{ conditionText }}</p>
-    <p>{{ temp }} °C</p>
+    <h3 class="weather-card__date">{{ formattedDate }}</h3>
+    <img class="weather-card__icon" :src="iconUrl" alt="weather icon" />
+    <p class="weather-card__condition">{{ conditionText }}</p>
+    <p class="weather-card__temp">{{ temp }} °C</p>
   </div>
 </template>
 <script>
@@ -51,13 +51,21 @@ export default {
     background-color: rgb(237, 233, 233);
   }
 
-  h3 {
+  &__date {
     color: rgb(4, 32, 67);
     margin-bottom: 0.5rem;
     font-size: 1rem;
   }
+  &__icon{
+      width: 64px; 
+    height: 64px;
+    object-fit: contain; 
+    margin: 0.5rem auto;
+    display: block;
+  }
 
-  p {
+
+  &__condition, &__temp {
     margin: 0.3rem 0;
     font-size: 0.95rem;
   }

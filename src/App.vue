@@ -1,14 +1,14 @@
 <template>
-  <div id="app">
+  <div class ="weather-app">
     <SearchBar @search="handleSearch" />
 
-    <div v-if="hasError" class="error-message">
+    <div v-if="hasError" class="weather-app__error-message">
       <p>Data not found. Please enter a valid city name.</p>
     </div>
 
     <div v-else>
-      <h2>{{ city }}</h2>
-      <div class="weather-cards">
+      <h2 class="weather-app__city">{{ city }}</h2>
+      <div class="weather-app__cards">
         <WeatherCard
           v-for="day in forecast"
           :key="day.date"
@@ -73,25 +73,26 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-#app {
+.weather-app{
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 80px;
-}
-.weather-cards {
+
+&__cards {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
   margin-top: 1rem;
 }
-h2 {
+&__city {
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 1.9rem;
   font-weight: 600;
   color: rgb(4, 32, 67);
   text-align: center;
+}
 }
 </style>

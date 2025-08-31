@@ -1,13 +1,14 @@
 <template>
   <div class="search-bar">
     <input
+    class="search-bar__input"
       v-model="cityInput"
       @keyup.enter="emitSearch"
       type="text"
       placeholder="Enter a city (e.g. Ankara)"
     />
-    <button @click="emitSearch">
-      <i class="fa-solid fa-magnifying-glass"></i>
+    <button class ="search-bar__button" @click="emitSearch">
+      <i class=" search-bar__icon fa-solid fa-magnifying-glass"></i>
     </button>
   </div>
 </template>
@@ -37,7 +38,7 @@ export default {
   margin-bottom: 10px;
   gap: 8px;
 
-  input {
+  &__input {
     padding: 0.6rem 1rem;
     font-size: 1.1rem;
     border: 1px solid #ccc;
@@ -51,7 +52,7 @@ export default {
     }
   }
 
-  button {
+  &__button {
     padding: 0.6rem 1rem;
     font-size: 1.1rem;
     border: none;
@@ -64,10 +65,10 @@ export default {
     &:hover {
       background-color: #005fcc;
     }
-
-    i {
+ }
+    &__icon {
       pointer-events: none;
     }
-  }
+ 
 }
 </style>
